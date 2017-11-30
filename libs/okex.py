@@ -25,7 +25,7 @@ class OKEX:
 
         response = requests.get(future_index_url, params=data)
 
-        if response.status_code == 200:
+        if response.status_code == requests.codes.ok:
             rdata = response.json()
 
             if rdata.get('error_code'):
