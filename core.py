@@ -8,20 +8,13 @@ Created on 2017年12月05日 下午3:51
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from celery_tasks.celery_conf import make_celery
+from celery_tasks.celery_conf import init_conf
 
 from flask import Flask
 
 app = Flask(__name__)
 
-def init_conf(env="dev"):
-    """ 初始化配置
-    """
-    app.config.from_object('config.setting_{}'.format(env))
-
-init_conf("dev")
-
-celery = make_celery(app)
+celery = init_conf(app)
 
 engine = create_engine(app.config["DB_URL"], echo=app.config["DB_ECHO"],
                        convert_unicode=True)
