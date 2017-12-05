@@ -14,7 +14,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-celery = init_conf(app)
+my_celery = init_conf(app)
 
 engine = create_engine(app.config["DB_URL"], echo=app.config["DB_ECHO"],
                        convert_unicode=True)

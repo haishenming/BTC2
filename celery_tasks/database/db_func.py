@@ -5,7 +5,7 @@ Created on 2017年12月05日 下午12:41
 
 '''
 
-from core.core import session
+from database import session
 
 
 def merge_record(instance):
@@ -14,9 +14,3 @@ def merge_record(instance):
     session.merge(instance)
     session.commit()
     return instance
-
-
-def get_obex():
-    """ 获取obex数据
-    """
-    pass
