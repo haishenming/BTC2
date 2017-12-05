@@ -26,7 +26,6 @@ def init_conf(env="dev"):
 
         # 定时执行器
         CELERYBEAT_SCHEDULE={
-            # 30秒心跳
             'get_future_broker': {
                 'task': 'tasks.get_future_broker',
                 'schedule': timedelta(seconds=5),

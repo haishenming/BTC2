@@ -15,7 +15,7 @@ class Okex(Base):
     __tablename__ = "okex"
 
     contract_id = Column(Integer, primary_key=True,
-                         nullable=False)  # 合约ID
+                         nullable=False, autoincrement=True)  # 合约ID
     last = Column(Integer, nullable=False)  # 最新价：分
     buy = Column(Integer, nullable=False)  # 买一价
     sell = Column(Integer, nullable=False)  # 卖一价

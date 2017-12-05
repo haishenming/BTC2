@@ -5,7 +5,7 @@ Created on 2017年12月05日 下午12:41
 
 '''
 
-from database import session
+from . import session
 
 
 def merge_record(instance):
