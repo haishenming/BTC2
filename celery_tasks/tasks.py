@@ -6,26 +6,23 @@ Created on 2017年12月04日 下午6:01
 任务信息
 '''
 
-from celery_tasks.celery_conf import init_conf
-
-
-my_celery = init_conf()
+from core import celery
 
 
 @my_celery.task()
 def get_future_broker():
-    """ 获取future_broker
+    """ 获取future_broker 每分钟运行一次
     """
     pass
 
 @my_celery.task()
 def get_future_index():
-    """ 获取future_index
+    """ 获取future_index 每分钟运行一次
     """
 
 @my_celery.task()
 def create_excel():
-    """ 生成excel文件
+    """ 生成excel文件 每天运行一次
     """
     pass
 

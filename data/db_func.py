@@ -5,6 +5,9 @@ Created on 2017年12月05日 下午12:41
 
 '''
 
+from core import session
+
+
 
 
 def merge_record(instance):
@@ -18,3 +21,4 @@ def merge_record(instance):
 def get_obex():
     """ 获取obex数据
     """
+    pass

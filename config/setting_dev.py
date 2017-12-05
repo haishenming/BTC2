@@ -23,3 +23,5 @@ CELERY_BACKEND = 'redis://localhost'
 
 
 ################ database ##################
+DB_URL = "sqlite:///data/data.db"
+DB_ECHO = True
