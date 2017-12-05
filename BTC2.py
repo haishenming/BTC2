@@ -3,6 +3,8 @@ from flask import render_template
 
 app = Flask(__name__)
 
+# 导入配置
+app.config.from_object('config.setting')
 
 
 @app.route('/')
