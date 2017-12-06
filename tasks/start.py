@@ -10,10 +10,10 @@ Created on 2017年12月06日 下午2:23
 from apscheduler.schedulers.blocking import BlockingScheduler
 from tasks_func import add_ticker
 
-def task():
+def tasks():
     add_ticker()
 
 sched = BlockingScheduler()
-sched.add_job(task, 'interval', seconds=60)
+sched.add_job(tasks, 'interval', seconds=60)
 sched.start()
 
