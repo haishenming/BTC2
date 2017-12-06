@@ -14,6 +14,6 @@ def task():
     add_ticker()
 
 sched = BlockingScheduler()
-sched.add_job(task, 'interval', seconds=10)
+sched.add_job(task, 'interval', seconds=60)
 sched.start()
 
