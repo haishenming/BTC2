@@ -8,7 +8,7 @@ Created on 2017年11月30日 下午2:59
 
 import requests
 
-from config.setting import future_index_url
+from config.setting_deploy import future_index_url
 
 
 def get_btc_data():

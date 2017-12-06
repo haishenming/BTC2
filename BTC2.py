@@ -1,16 +1,15 @@
-from flask import Flask
-from flask import render_template
-
-app = Flask(__name__)
+from core import app
 
 # 导入配置
-app.config.from_object('config.setting')
+def init_conf(env="dev"):
+    """ 初始化配置
+    """
+    app.config.from_object('config.setting_{}'.format(env))
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+
 
 
 if __name__ == '__main__':
+    init_conf()
     app.run()
