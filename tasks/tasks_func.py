@@ -63,33 +63,48 @@ def get_sdata_list():
 
     return ret
 
-def add_ticker():
+def add_ticker(rdata, rdata_index, symbol, contract_type):
     """ 获取并写入ticker
     """
-    sdata_list = get_sdata_list()
 
+    ticker = rdata["ticker"]
+    okex = Okex(
+        contract_id=int(ticker["contract_id"]),
+        last=float(ticker['last']),
+        buy=float(ticker['buy']),
+        sell=float(ticker['sell']),
+        high=float(ticker['high']),
+        low=float(ticker['low']),
+        vol=float(ticker['vol']),
+        unit_amount=float(ticker['unit_amount']),
+        symbol=symbol,
+        contract_type=contract_type,
+        date=datetime.fromtimestamp(int(rdata['date'])),
+        future_index=float(rdata_index['future_index'])
+    )
+    merge_record(okex)
+
+def parse_sdata_list(parse_data):
+    """ 将sdata解析为可使用的数据
+    """
+    # 分组
+    pass
+
+def add_sdata_plus(parse_data):
+    """ 将解析后的sdata存入数据库
+    """
+    sdata_plus = parse_sdata_list(parse_data)
+
+
+if __name__ == '__main__':
+    sdata_list = get_sdata_list()
+    parse_data = []
     for symbol, contract_type in sdata_list:
         rdata = get_ticker(symbol, contract_type)
         rdata_index = get_index(symbol)
         ticker = rdata["ticker"]
-        okex = Okex(
-            contract_id=int(ticker["contract_id"]),
-            last=float(ticker['last']),
-            buy=float(ticker['buy']),
-            sell=float(ticker['sell']),
-            high=float(ticker['high']),
-            low=float(ticker['low']),
-            vol=float(ticker['vol']),
-            unit_amount=float(ticker['unit_amount']),
-            symbol=symbol,
-            contract_type=contract_type,
-            date=datetime.fromtimestamp(int(rdata['date'])),
-            future_index=float(rdata_index['future_index'])
-        )
-        merge_record(okex)
+        parse_data.append((rdata, rdata_index, symbol, contract_type))
 
-
-if __name__ == '__main__':
-    add_ticker()
-
+        # add_ticker(rdata, rdata_index, symbol, contract_type)
+    add_sdata_plus(parse_data)
 

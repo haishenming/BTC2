@@ -19,7 +19,6 @@ def index():
 
     okexs = get_new_okexs_by_symbol("btc_usd")
 
-    okex_plus
 
 
     return render_template('index.html')

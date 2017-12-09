@@ -29,3 +29,16 @@ class Okex(Base):
     date = Column(DateTime, nullable=False)
     future_index = Column(Float, nullable=False)  # 当前合约指数
     create_time = Column(DateTime, default=datetime.now())
+
+class Okex_plus(Base):
+    __tablename__ = "okex_plus"
+
+    id = Column(Integer, primary_key=True)
+    symbol = Column(String(16), nullable=False)
+    X = Column(Float, nullable=False)    # 当周净利
+    Y = Column(Float, nullable=False)    # 次周净利
+    Z = Column(Float, nullable=False)    # 季度净利
+    M = Column(Float, nullable=False)    # 次周为当周倍数
+    N = Column(Float, nullable=False)    # 季度为次周倍数
+    create_time = Column(DateTime, default=datetime.now())
+
