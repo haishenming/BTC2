@@ -48,9 +48,9 @@ def task_1d():
 
     print("############# 1d任务完成 #############")
 
-
-sched = BlockingScheduler()
-sched.add_job(task_60s, 'interval', seconds=60)
-sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)
-sched.start()
+if __name__ == '__main__':
+    sched = BlockingScheduler()
+    sched.add_job(task_60s, 'cron', second=30)    # 每分钟的第30秒运行
+    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   # 每天0点运行
+    sched.start()
 
