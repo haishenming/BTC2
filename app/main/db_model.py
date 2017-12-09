@@ -9,6 +9,5 @@ def get_new_okexs_by_symbol(symbol, num=5):
     return Okex.query.filter_by(symbol=symbol).order_by(
         Okex.create_time.desc(
 
-    )).limit(
-        num).all()
+    )).limit(num).all()
 
