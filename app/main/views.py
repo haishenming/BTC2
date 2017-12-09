@@ -45,7 +45,7 @@ def get_okex_plus():
     """ 获取okex统计数据
     """
 
-    default = '{"max": 10, "min": 0}'
+    default = '{"max": 0, "min": 0}'
     x_num = json.loads(request.args.get("x", default))
     y_num = json.loads(request.args.get("y", default))
     z_num = json.loads(request.args.get("z", default))
