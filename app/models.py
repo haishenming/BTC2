@@ -29,4 +29,4 @@ class Okex(db.Model):
     # 合约类型：this_week:当周 next_week:下周   quarter:季度
     date = db.Column(db.DateTime, nullable=False)
     future_index = db.Column(db.Float, nullable=False)  # 当前合约指数
-    create_time = db.Column(db.DateTime, default=datetime.now())
+    create_time = db.Column(db.DateTime, default=datetime.now)
