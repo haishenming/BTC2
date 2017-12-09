@@ -36,7 +36,7 @@ def task_60s():
 
 
 def task_1d():
-    """ 一天一次
+    """ 每天0点运行
     """
     print("############# 开始1d任务 #############")
 
@@ -51,6 +51,6 @@ def task_1d():
 
 sched = BlockingScheduler()
 sched.add_job(task_60s, 'interval', seconds=60)
-sched.add_job(task_1d, 'interval', days=1)
+sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)
 sched.start()
 

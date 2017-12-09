@@ -170,11 +170,11 @@ def add_okex_plus_to_scv(start, end):
             op.N,
             op.create_time.strftime("%Y-%m-%d %H:%M:%S")
         ])
-    filename = 'BTC2'
+    filename = '合约'
     base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if not os.path.exists(base_path):
         os.mkdir(base_path)
-    filename += "_%s.csv" % datetime.now().strftime('%Y%m%d%H%M%S')
+    filename += "_%s.csv" % datetime.now().strftime('%Y%m%d')
 
     with open(os.path.join(base_path, "excel", filename), 'w', newline='',
               encoding='gb18030') as f:

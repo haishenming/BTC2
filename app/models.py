@@ -38,6 +38,7 @@ class OkexPlus(db.Model):
     symbol = db.Column(db.String(16), nullable=False)
     X = db.Column(db.Float, nullable=False)    # 当周净利
     Y = db.Column(db.Float, nullable=False)    # 次周净利
+    Z = db.Column(db.Float, nullable=False)    # 季度净利
     M = db.Column(db.Float, nullable=False)    # 次周为当周倍数
     N = db.Column(db.Float, nullable=False)    # 季度为次周倍数
     create_time = db.Column(db.DateTime, default=datetime.now)
