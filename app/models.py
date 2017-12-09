@@ -5,12 +5,7 @@ Created on 2017年12月05日 下午12:41
 
 '''
 from datetime import datetime
-import hashlib
-from werkzeug.security import generate_password_hash, check_password_hash
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask import current_app, request
-from flask_login import UserMixin, AnonymousUserMixin
-from . import db, login_manager
+from . import db
 
 class Okex(db.Model):
     __tablename__ = "okex"
