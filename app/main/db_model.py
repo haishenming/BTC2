@@ -2,6 +2,13 @@
 from ..models import Okex
 
 
-def get_new_okex_data():
+def get_new_okexs_by_symbol(symbol, num=5):
+    """ 获取最新的okex数据,可设置数量
+    """
 
-    return Okex.query.filter_by()
+    return Okex.query.filter_by(symbol=symbol).order_by(
+        Okex.create_time.desc(
+
+    )).limit(
+        num).all()
+
