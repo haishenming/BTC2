@@ -45,8 +45,24 @@ class DevelopmentConfig(Config):
 
     print(SQLALCHEMY_DATABASE_URI)
 
+class PublishConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+                              'sqlite:///' + os.path.join(basedir + '/tasks',
+                                                          'data.db')
+    SYMBOL_DIC = {
+        "btc": "btc_usd",
+        "ltc": "ltc_usd",
+        "eth": "eth_usd",
+        "etc": "etc_usd",
+        "bch": "bch_usd"
+
+    }
+
+    print(SQLALCHEMY_DATABASE_URI)
+
 
 
 config = {'development': DevelopmentConfig,
-          'default': DevelopmentConfig
+          'default': DevelopmentConfig,
+          'publish': PublishConfig
           }
