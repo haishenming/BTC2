@@ -21,4 +21,5 @@ def get_new_okex(num=15):
 def index():
     data = get_new_okex()
 
+
     return render_template('index.html')
