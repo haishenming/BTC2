@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}flask{% endblock %}
+
+{% block page_content %}
+    {% if current_user.is_authenticated %}
+        <h1>{{ current_user.name }}</h1>
+    {% else %}
+        <h1>Stranger</h1>
+    {% endif %}
+{% endblock %}
+
