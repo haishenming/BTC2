@@ -6,7 +6,7 @@ from app.main.comm_func import get_symbol_dic_config
 from ..models import Okex
 from .. import db
 from manage import app
-from .db_model import get_new_okexs_by_symbol, get_new_okex_plus
+from .db_model import get_new_okexs_by_symbol, get_new_okex_plus, get_new_okex_now
 
 from . import main
 
@@ -82,3 +82,25 @@ def get_okex_plus():
         })
 
     return json.dumps(rdata)
+
+
+@main.route("/okex_now")
+def get_okex_now():
+    """ 获取现货信息
+    """
+
+    datas = get_new_okex_now(num=1)
+    data = datas[0]
+
+    ticker_infos = json.loads(data.ticker_info)
+    index_infos = json.loads(data.index_info)
+
+    rdata = {}
+    for symbol, index in index_infos.items():
+        rdata[symbol] = {
+            "ticker": ticker_infos.get(symbol + "t"),
+            "{}_btc".format(symbol[0:3]): ticker_infos.get("{}_btc".format(symbol[0:3])) or 1,
+            "index": index
+        }
+
+    return json.dumps({})

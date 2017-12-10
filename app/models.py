@@ -37,3 +37,10 @@ class OkexPlus(db.Model):
     M = db.Column(db.Float, nullable=False)    # 次周为当周倍数
     N = db.Column(db.Float, nullable=False)    # 季度为次周倍数
     create_time = db.Column(db.DateTime, default=datetime.now)
+
+class OkexNow(db.Model):
+    __tablename__ = "okex_now"
+    id = db.Column(db.Integer, primary_key=True)
+    ticker_info = db.Column(db.Text)     # 信息
+    index_info = db.Column(db.Text)     # 信息
+    create_time = db.Column(db.DateTime, default=datetime.now)
