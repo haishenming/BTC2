@@ -13,8 +13,8 @@ from tasks_func import add_ticker, add_sdata_plus, get_sdata_list, get_ticker, \
     get_index, add_okex_plus_to_scv
 
 
-def task_60s():
-    """ 一分钟一次
+def task_10s():
+    """ 10秒运行一次
     """
     print("############# 开始60s任务 #############")
 
@@ -48,9 +48,9 @@ def task_1d():
 
     print("############# 1d任务完成 #############")
 
-if __name__ == '__main__':
-    sched = BlockingScheduler()
-    sched.add_job(task_60s, 'cron', second=30)    # 每分钟的第30秒运行
-    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   # 每天0点运行
-    sched.start()
+
+sched = BlockingScheduler()
+sched.add_job(task_10s, 'interval', seconds=10)
+sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)
+sched.start()
 

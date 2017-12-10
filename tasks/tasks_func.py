@@ -19,6 +19,9 @@ FUTURE_TICKER_URL = 'https://www.okex.com/api/v1/future_ticker.do'
 # 获取OKEX合约指数信息
 FUTURE_INDEX_URL = 'https://www.okex.com/api/v1/future_index.do'
 
+# 获取okex现货信息
+TICKER_URL = 'https://www.okex.com/api/v1/ticker.do'
+
 SDATA = (
     ('btc_usd', 'ltc_usd', 'eth_usd', 'etc_usd', 'bch_usd'),
     ('this_week', 'next_week', 'quarter')
@@ -51,6 +54,20 @@ def get_index(symbol):
     rdata = response.json()
 
     return rdata
+
+def get_ticker_now(symbol):
+    """ 获取现货信息
+    """
+    data = {
+        "symbol": symbol,
+    }
+
+    response = requests.get(FUTURE_INDEX_URL, params=data)
+
+    rdata = response.json()
+
+    return rdata
+
 
 def get_sdata_list():
     """ 获取sdata列表

@@ -2,7 +2,7 @@
 from ..models import Okex, OkexPlus
 
 
-def get_new_okexs_by_symbol(symbol, num=5):
+def get_new_okexs_by_symbol(symbol, num=3):
     """ 获取最新的okex数据,可设置数量
     """
 
