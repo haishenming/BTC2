@@ -103,4 +103,4 @@ def get_okex_now():
             "index": index
         }
 
-    return json.dumps({})
+    return json.dumps(rdata)
