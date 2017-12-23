@@ -20,7 +20,7 @@ def index():
 
     return render_template('index.html')
 
-@main.route('/okex')
+@main.route('/basic')
 def get_okex():
     """ 获取okex
     """
@@ -40,7 +40,7 @@ def get_okex():
     return json.dumps(rdata)
 
 
-@main.route('/okex_plus')
+@main.route('/main')
 def get_okex_plus():
     """ 获取okex统计数据
     """
@@ -84,7 +84,7 @@ def get_okex_plus():
     return json.dumps(rdata)
 
 
-@main.route("/okex_now")
+@main.route("/additional")
 def get_okex_now():
     """ 获取现货信息
     """

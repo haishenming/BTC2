@@ -4,11 +4,272 @@
 
 {% block page_content %}
 
+{#    basic 基本数据表#}
+{#    main 报警表#}
+{#    aditional 附加表#}
+
+    <div class="container">
+        <h1>行情表</h1>
+        <dr/>
+        <table class="table table-bordered basic">
+      <thead>
+        <tr>
+          <th>品种/价格</th>
+          <th class="A">A.当周最新成交价</th>
+          <th class="B">B.次周最新成交价</th>
+          <th class="C">C.季度最新成交价</th>
+          <th class="D">D.最新价格指数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="BTC">
+          <th scope="row">1.BTC</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="LTC">
+          <th scope="row">2.LTC</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="ETH">
+          <th scope="row">3.ETH</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="ETC">
+          <th scope="row">4.ETC</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="BCH">
+          <th scope="row">5.BCH</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+      </tbody>
+    </table>
+
+        <h1>报警表</h1>
+        <dr/>
+        <table class="table table-bordered main">
+      <thead>
+        <tr>
+          <th>品种/数值</th>
+          <th class="X">X.当周毛利</th>
+          <th class="Y">Y.次周毛利</th>
+          <th class="Z">Z.季度毛利</th>
+          <th class="M">M.次周为当周倍数</th>
+          <th class="N">N.季度为次周倍数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="BTC">
+          <th scope="row">1.BTC</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="LTC">
+          <th scope="row">2.LTC</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="ETH">
+          <th scope="row">3.ETH</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="ETC">
+          <th scope="row">4.ETC</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="BCH">
+          <th scope="row">5.BCH</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="main-btc">
+          <th scope="row">报警数值设置</th>
+          <td class="X">
+              <div class="main-input">
+                  大于 <input type="text" class="min">
+                  小于 <input type="text" class="max">
+              </div>
+          </td>
+          <td class="Y">
+              <div class="main-input">
+                  大于 <input type="text" class="min">
+                  小于 <input type="text" class="max">
+              </div>
+          </td>
+          <td class="Z">
+              <div class="main-input">
+                  大于 <input type="text" class="min">
+                  小于 <input type="text" class="max">
+              </div>
+          </td>
+          <td class="M">
+              <div class="main-input">
+                  大于 <input type="text" class="min">
+                  小于 <input type="text" class="max">
+              </div>
+          </td>
+          <td class="N">
+              <div class="main-input">
+                  大于 <input type="text" class="min">
+                  小于 <input type="text" class="max">
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+        <h1>附加表</h1>
+        <dr/>
+        <table class="table table-bordered additional">
+      <thead>
+        <tr>
+          <th>品种/数值</th>
+          <th class="H">H.指数价格</th>
+          <th class="J">J.BTC倍数</th>
+          <th class="K">K.最新价格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="BTC">
+          <th scope="row">1.BTC</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="LTC">
+          <th scope="row">2.LTC</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="ETH">
+          <th scope="row">3.ETH</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="ETC">
+          <th scope="row">4.ETC</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="BCH">
+          <th scope="row">5.BCH</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="additional-btc">
+          <th scope="row">
+            <div class="additional-btc-up">
+              <input type="checkbox"> 1
+              <input type="checkbox"> 2
+              <input type="checkbox"> 3
+              <input type="checkbox"> 4
+              <input type="checkbox"> 5
+            </div>
+            <div class="additional-btc-down">
+              <input type="checkbox"> 1
+              <input type="checkbox"> 2
+              <input type="checkbox"> 3
+              <input type="checkbox"> 4
+              <input type="checkbox"> 5
+            </div>
+          </th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
 {% endblock %}
-
-
 
 {% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+<script>
 
+main();
+
+var basicUrl = "http://127.0.0.1:5000/basic";
+var mainUrl = "http://127.0.0.1:5000/main";
+var additionalUrl = "http://127.0.0.1:5000/additional";
+
+function main() {
+    {#获取基本数据#}
+    getBasic();
+    {#获取报警数据#}
+    getMain();
+    {#获取额外数据#}
+    getAdditional();
+}
+
+
+function getBasic() {
+    {#获取基本数据#}
+    $.get({
+        url: "http://127.0.0.1:5000/basic",
+        dataType: "json"
+    }).done(function (data) {
+        rdata = data;
+        $.each(rdata, function (i, data) {
+            console.log(data);
+            console.log($(".basic body .BTC .A"));
+            $(".basic + body + .BTC + .A").text = data["this_week"]
+        })
+    });
+
+
+
+}
+
+function getMain() {
+    {#获取主要数据#}
+
+}
+
+function getAdditional() {
+    {#获取额外数据#}
+}
+
+
+
+</script>
 {% endblock %}
-
