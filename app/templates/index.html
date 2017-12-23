@@ -74,7 +74,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="BTC">
+        <tr class="btc_usd">
           <th scope="row">1.BTC</th>
           <td class="X"></td>
           <td class="Y"></td>
@@ -82,7 +82,7 @@
           <td class="M"></td>
           <td class="N"></td>
         </tr>
-        <tr class="LTC">
+        <tr class="ltc_usd">
           <th scope="row">2.LTC</th>
           <td class="X"></td>
           <td class="Y"></td>
@@ -90,7 +90,7 @@
           <td class="M"></td>
           <td class="N"></td>
         </tr>
-        <tr class="ETH">
+        <tr class="eth_usd">
           <th scope="row">3.ETH</th>
           <td class="X"></td>
           <td class="Y"></td>
@@ -98,7 +98,7 @@
           <td class="M"></td>
           <td class="N"></td>
         </tr>
-        <tr class="ETC">
+        <tr class="etc_usd">
           <th scope="row">4.ETC</th>
           <td class="X"></td>
           <td class="Y"></td>
@@ -106,7 +106,7 @@
           <td class="M"></td>
           <td class="N"></td>
         </tr>
-        <tr class="BCH">
+        <tr class="bch_usd">
           <th scope="row">5.BCH</th>
           <td class="X"></td>
           <td class="Y"></td>
@@ -118,32 +118,32 @@
           <th scope="row">报警数值设置</th>
           <td class="X">
               <div class="main-input">
-                  大于 <input type="text" class="min">
-                  小于 <input type="text" class="max">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
               </div>
           </td>
           <td class="Y">
               <div class="main-input">
-                  大于 <input type="text" class="min">
-                  小于 <input type="text" class="max">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
               </div>
           </td>
           <td class="Z">
               <div class="main-input">
-                  大于 <input type="text" class="min">
-                  小于 <input type="text" class="max">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
               </div>
           </td>
           <td class="M">
               <div class="main-input">
-                  大于 <input type="text" class="min">
-                  小于 <input type="text" class="max">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
               </div>
           </td>
           <td class="N">
               <div class="main-input">
-                  大于 <input type="text" class="min">
-                  小于 <input type="text" class="max">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
               </div>
           </td>
         </tr>
@@ -162,31 +162,31 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="BTC">
+        <tr class="btc_usd">
           <th scope="row">1.BTC</th>
           <td class="H"></td>
           <td class="J"></td>
           <td class="K"></td>
         </tr>
-        <tr class="LTC">
+        <tr class="ltc_usd">
           <th scope="row">2.LTC</th>
           <td class="H"></td>
           <td class="J"></td>
           <td class="K"></td>
         </tr>
-        <tr class="ETH">
+        <tr class="eth_usd">
           <th scope="row">3.ETH</th>
           <td class="H"></td>
           <td class="J"></td>
           <td class="K"></td>
         </tr>
-        <tr class="ETC">
+        <tr class="etc_usd">
           <th scope="row">4.ETC</th>
           <td class="H"></td>
           <td class="J"></td>
           <td class="K"></td>
         </tr>
-        <tr class="BCH">
+        <tr class="bch_usd">
           <th scope="row">5.BCH</th>
           <td class="H"></td>
           <td class="J"></td>
@@ -226,7 +226,9 @@
     {{ moment.include_moment() }}
 <script>
 
-main();
+var task;
+
+task = setInterval(main, 5000);
 
 var basicUrl = "http://127.0.0.1:5000/basic";
 var mainUrl = "http://127.0.0.1:5000/main";
@@ -250,9 +252,17 @@ function getBasic() {
     }).done(function (data) {
         rdata = data;
         $.each(rdata, function (i, data) {
-            console.log(data);
-            console.log($(".basic body .BTC .A"));
-            $(".basic + body + .BTC + .A").text = data["this_week"]
+            {#console.log($(".basic").find(this_symbol.concat(" .A")));#}
+            symbol = data["symbol"];
+            this_symbol = ".".concat(symbol.toUpperCase());
+            $(".basic").find(this_symbol.concat(" .A")).text
+            (data["this_week"]);
+            $(".basic").find(this_symbol.concat(" .B")).text
+            (data["next_week"]);
+            $(".basic").find(this_symbol.concat(" .C")).text
+            (data["quarter"]);
+            $(".basic").find(this_symbol.concat(" .D")).text
+            (data["future_index"]);
         })
     });
 
@@ -262,11 +272,49 @@ function getBasic() {
 
 function getMain() {
     {#获取主要数据#}
+    $.get({
+        url: "http://127.0.0.1:5000/main",
+        dataType: "json"
+    }).done(function (data) {
+        rdata = data;
+        $.each(rdata, function (i, data) {
+            {#console.log($(".basic").find(this_symbol.concat(" .A")));#}
+            symbol = data["symbol"];
+            this_symbol = ".".concat(symbol);
+            $(".main").find(this_symbol.concat(" .X")).text
+            (data["X"]);
+            $(".main").find(this_symbol.concat(" .Y")).text
+            (data["Y"]);
+            $(".main").find(this_symbol.concat(" .Z")).text
+            (data["Z"]);
+            $(".main").find(this_symbol.concat(" .M")).text
+            (data["M"]);
+            $(".main").find(this_symbol.concat(" .N")).text
+            (data["N"]);
+        })
+    })
 
 }
 
 function getAdditional() {
     {#获取额外数据#}
+    $.get({
+        url: "http://127.0.0.1:5000/additional",
+        dataType: "json"
+    }).done(function (data) {
+        rdata = data;
+        $.each(rdata, function (k, data) {
+            symbol = k;
+            mid = symbol.slice(0, 3).concat("_btc");
+            this_symbol = ".".concat(symbol);
+            $(".additional").find(this_symbol.concat(" .H")).text
+            (data["index"]);
+            $(".additional").find(this_symbol.concat(" .J")).text
+            (data[mid]);
+            $(".additional").find(this_symbol.concat(" .K")).text
+            (data["ticker"]);
+        })
+    })
 }
 
 
