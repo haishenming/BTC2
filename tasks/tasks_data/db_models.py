@@ -6,7 +6,7 @@ Created on 2017年12月05日 下午12:41
 '''
 from datetime import datetime
 
-from sqlalchemy import Column, String, Integer, DateTime, Float
+from sqlalchemy import Column, String, Integer, DateTime, Float, Text
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -41,4 +41,14 @@ class OkexPlus(Base):
     M = Column(Float, nullable=False)    # 次周为当周倍数
     N = Column(Float, nullable=False)    # 季度为次周倍数
     create_time = Column(DateTime, default=datetime.now)
+
+
+class OkexNow(Base):
+    __tablename__ = "okex_now"
+    id = Column(Integer, primary_key=True)
+    ticker_info = Column(Text)     # 信息
+    index_info = Column(Text)     # 信息
+    create_time = Column(DateTime, default=datetime.now)
+
+
 

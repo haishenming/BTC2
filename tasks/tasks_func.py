@@ -6,11 +6,12 @@ Created on 2017年12月06日 下午2:24
 任务列表
 '''
 import csv
+import json
 from datetime import datetime, timedelta
 
 import os
 import requests
-from tasks_data.db_models import Okex, OkexPlus
+from tasks_data.db_models import Okex, OkexPlus, OkexNow
 from tasks_data.db_func import merge_record, get_okex_plus_by_time
 
 # 获取OKEX合约行情
@@ -19,9 +20,21 @@ FUTURE_TICKER_URL = 'https://www.okex.com/api/v1/future_ticker.do'
 # 获取OKEX合约指数信息
 FUTURE_INDEX_URL = 'https://www.okex.com/api/v1/future_index.do'
 
+# 获取okex现货信息
+TICKER_NOW_URL = 'https://www.okex.com/api/v1/ticker.do'
+
+# 合约参数
 SDATA = (
     ('btc_usd', 'ltc_usd', 'eth_usd', 'etc_usd', 'bch_usd'),
     ('this_week', 'next_week', 'quarter')
+)
+
+# 现货参数
+SDATA_NOW = (
+    'ltc_btc', 'eth_btc', 'etc_btc', 'bch_btc', 'btc_usdt', 'eth_usdt',
+    'ltc_usdt', 'etc_usdt', 'bch_usdt', 'etc_eth', 'bt1_btc', 'bt2_btc',
+    'btg_btc', 'qtum_btc', 'hsr_btc', 'neo_btc', 'gas_btc', 'qtum_usdt',
+    'hsr_usdt', 'neo_usdt', 'gas_usdt'
 )
 
 
@@ -51,6 +64,20 @@ def get_index(symbol):
     rdata = response.json()
 
     return rdata
+
+def get_ticker_now(symbol):
+    """ 获取现货信息
+    """
+    data = {
+        "symbol": symbol,
+    }
+
+    response = requests.get(TICKER_NOW_URL, params=data)
+
+    rdata = response.json()
+
+    return rdata
+
 
 def get_sdata_list():
     """ 获取sdata列表
@@ -183,11 +210,35 @@ def add_okex_plus_to_scv(start, end):
 
 
 
+def add_ticker_now():
+    """ 将现货信息存入数据库
+    """
+    ticker_info = {}
+    print("开始获取现货信息")
+    for symbol in SDATA_NOW:
+        print("获取 {} 现货".format(symbol))
+        ticker_now = get_ticker_now(symbol)
+        print(ticker_now)
+        ticker_info[symbol] = ticker_now["ticker"]["last"]
+    index_info = {}
+    print("获取现货对应的index数值")
+    for symbol in SDATA[0]:
+        print("获取 {} index".format(symbol))
+        index_now = get_index(symbol)
+        print(index_now)
+        index_info[symbol] = index_now["future_index"]
 
+    okex_now = OkexNow(
+        ticker_info=json.dumps(ticker_info),
+        index_info = json.dumps(index_info)
+    )
+    print("现货信息写入数据库")
+    merge_record(okex_now)
 
 
 
 if __name__ == '__main__':
+    pass
     # sdata_list = get_sdata_list()
     # parse_data = []
     # for symbol, contract_type in sdata_list:
@@ -196,10 +247,12 @@ if __name__ == '__main__':
     #     ticker = rdata["ticker"]
     #     parse_data.append((rdata, rdata_index, symbol, contract_type))
     #
-    #     # add_ticker(rdata, rdata_index, symbol, contract_type)
+    #     add_ticker(rdata, rdata_index, symbol, contract_type)
     # add_sdata_plus(parse_data)
-    end = datetime.now()
-    start = datetime.now() - timedelta(days=1)
+    # end = datetime.now()
+    # start = datetime.now() - timedelta(days=1)
+    #
+    # add_okex_plus_to_scv(start, end)
 
-    add_okex_plus_to_scv(start, end)
+    # add_ticker_now()
 

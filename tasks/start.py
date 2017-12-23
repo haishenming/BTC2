@@ -6,22 +6,26 @@ Created on 2017年12月06日 下午2:23
 定时任务核心代码
 
 '''
+import time
+
 from datetime import datetime, timedelta
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from tasks_func import add_ticker, add_sdata_plus, get_sdata_list, get_ticker, \
-    get_index, add_okex_plus_to_scv
+    get_index, add_okex_plus_to_scv, add_ticker_now
 
 
-def task_60s():
-    """ 一分钟一次
+def task_15s():
+    """ 10秒运行一次
     """
-    print("############# 开始60s任务 #############")
+    start = time.time()
+    print("############# 开始30s任务 #############")
 
     print("获取数据 ##########")
     sdata_list = get_sdata_list()
     parse_data = []
     for symbol, contract_type in sdata_list:
+        print("获取 {} 合约信息 {}".format(symbol, contract_type))
         rdata = get_ticker(symbol, contract_type)
         rdata_index = get_index(symbol)
         ticker = rdata["ticker"]
@@ -31,8 +35,11 @@ def task_60s():
         add_ticker(rdata, rdata_index, symbol, contract_type)
     print("写入 统计数据 ############")
     add_sdata_plus(parse_data)
+    add_ticker_now()
 
-    print("############# 60s任务完成 #############")
+    print("############# 15s任务完成 耗时 {} 秒 #############".
+          format(time.time() - start))
+
 
 
 def task_1d():
@@ -48,9 +55,9 @@ def task_1d():
 
     print("############# 1d任务完成 #############")
 
-
-sched = BlockingScheduler()
-sched.add_job(task_60s, 'interval', seconds=60)
-sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)
-sched.start()
+if __name__ == '__main__':
+    sched = BlockingScheduler()
+    sched.add_job(task_15s, 'interval', seconds=15)    # 每分钟的第30秒运行
+    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   # 每天0点运行
+    sched.start()
 
