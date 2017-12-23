@@ -44,31 +44,43 @@ def get_okex():
 def get_okex_plus():
     """ 获取okex统计数据
     """
-
-    default = '{"max": 0, "min": 0}'
-    x_num = json.loads(request.args.get("x", default))
-    y_num = json.loads(request.args.get("y", default))
-    z_num = json.loads(request.args.get("z", default))
-    m_num = json.loads(request.args.get("m", default))
-    n_num = json.loads(request.args.get("n", default))
+    data = request.args
+    x_num = {"max": data.get("x[max]"), "min": data.get("x[min]")}
+    y_num = {"max": data.get("y[max]"), "min": data.get("y[min]")}
+    z_num = {"max": data.get("z[max]"), "min": data.get("z[min]")}
+    m_num = {"max": data.get("m[max]"), "min": data.get("m[min]")}
+    n_num = {"max": data.get("n[max]"), "min": data.get("n[min]")}
 
     okex_pluss = get_new_okex_plus(5)
 
     rdata = []
     for okex_plus in okex_pluss:
-        print(okex_plus.Z)
         symbol = okex_plus.symbol
         X = okex_plus.X
         Y = okex_plus.Y
         Z = okex_plus.Z
         M = okex_plus.M
         N = okex_plus.N
+        check_x = x_num["min"] != x_num["max"]
+        check_y = y_num["min"] != y_num["max"]
+        check_z = z_num["min"] != z_num["max"]
+        check_m = m_num["min"] != m_num["max"]
+        check_n = n_num["min"] != n_num["max"]
         msg = {
-            "X": 1 if int(x_num["min"]) < X < int(x_num["max"]) else 0,
-            "Y": 1 if int(y_num["min"]) < Y < int(y_num["max"]) else 0,
-            "Z": 1 if int(z_num["min"]) < Z < int(z_num["max"]) else 0,
-            "M": 1 if int(m_num["min"]) < M < int(m_num["max"]) else 0,
-            "N": 1 if int(n_num["min"]) < N < int(n_num["max"]) else 0,
+            "X": 1 if not(float(x_num["min"]) < X < float(x_num["max"]))
+                      and check_x else 0,
+
+            "Y": 1 if not(float(y_num["min"]) < Y < float(y_num["max"]))
+                      and check_y else 0,
+
+            "Z": 1 if not(float(z_num["min"]) < Z < float(z_num["max"]))
+                      and check_z else 0,
+
+            "M": 1 if not(float(m_num["min"]) < M < float(m_num["max"]))
+                      and check_m else 0,
+
+            "N": 1 if not(float(n_num["min"]) < N < float(n_num["max"]))
+                      and check_n else 0,
         }
 
         rdata.append({

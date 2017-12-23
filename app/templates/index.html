@@ -228,13 +228,13 @@
 
 var task;
 
-task = setInterval(main, 5000);
+task = setInterval(start, 5000);
 
 var basicUrl = "http://127.0.0.1:5000/basic";
 var mainUrl = "http://127.0.0.1:5000/main";
 var additionalUrl = "http://127.0.0.1:5000/additional";
 
-function main() {
+function start() {
     {#获取基本数据#}
     getBasic();
     {#获取报警数据#}
@@ -272,13 +272,16 @@ function getBasic() {
 
 function getMain() {
     {#获取主要数据#}
+    upData = findMainUpData();
+
     $.get({
         url: "http://127.0.0.1:5000/main",
-        dataType: "json"
+        dataType: "json",
+        data: upData
     }).done(function (data) {
         rdata = data;
+
         $.each(rdata, function (i, data) {
-            {#console.log($(".basic").find(this_symbol.concat(" .A")));#}
             symbol = data["symbol"];
             this_symbol = ".".concat(symbol);
             $(".main").find(this_symbol.concat(" .X")).text
@@ -291,7 +294,22 @@ function getMain() {
             (data["M"]);
             $(".main").find(this_symbol.concat(" .N")).text
             (data["N"]);
+
+            msg = data["msg"];
+            $.each(msg, function (k, v) {
+                this_btn = " .".concat(k.toUpperCase());
+                if(v===1){
+                    $(".main").find(this_symbol.concat(this_btn))
+                        .addClass("alert-danger")
+                } else {
+                    $(".main").find(this_symbol.concat(this_btn))
+                        .removeClass("alert-danger")
+                }
+
+
+            })
         })
+
     })
 
 }
@@ -315,6 +333,41 @@ function getAdditional() {
             (data["ticker"]);
         })
     })
+}
+
+
+{#查找上传的main数据#}
+function findMainUpData() {
+    X = $(".main-btc").children(".X");
+    Y = $(".main-btc").children(".Y");
+    Z = $(".main-btc").children(".Z");
+    M = $(".main-btc").children(".M");
+    N = $(".main-btc").children(".N");
+    x_max = X.find(".max").val()? X.find(".max").val(): "0";
+    x_min = X.find(".min").val()? X.find(".min").val(): "0";
+
+    y_max = Y.find(".max").val()? Y.find(".max").val(): "0";
+    y_min = Y.find(".min").val()? Y.find(".min").val(): "0";
+
+    z_max = Z.find(".max").val()? Z.find(".max").val(): "0";
+    z_min = Z.find(".min").val()? Z.find(".min").val(): "0";
+
+    m_max = M.find(".max").val()? M.find(".max").val(): "0";
+    m_min = M.find(".min").val()? M.find(".min").val(): "0";
+
+    n_max = N.find(".max").val()? N.find(".max").val(): "0";
+    n_min = N.find(".min").val()? N.find(".min").val(): "0";
+
+    return {
+        "x": {"max": x_max, "min": x_min},
+        "y": {"max": y_max, "min": y_min},
+        "z": {"max": z_max, "min": z_min},
+        "m": {"max": m_max, "min": m_min},
+        "n": {"max": n_max, "min": n_min}
+    }
+
+
+
 }
 
 
