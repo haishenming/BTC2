@@ -8,8 +8,8 @@ from flask_script import Manager, Shell, Server
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
-server = Server(host="0.0.0.0", port=9000)
-manager.add_command("runserver", server)
+server = Server(host="0.0.0.0", port=5000)
+manager.add_command("runserver", server )
 
 
 
