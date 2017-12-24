@@ -12,6 +12,14 @@ from . import main
 
 SYMBOL_DIC = get_symbol_dic_config()
 
+coin_index = {
+    1: "btc_usd",
+    2: "ltc_usd",
+    3: "eth_usd",
+    4: "etc_usd",
+    5: "bch_usd",
+}
+
 
 ####### views #########
 
@@ -101,6 +109,10 @@ def get_okex_now():
     """ 获取现货信息
     """
 
+    data = request.args
+    up_data = int(data.get("up"))
+    down_data = int(data.get("down"))
+
     datas = get_new_okex_now(num=1)
     data = datas[0]
 
@@ -114,5 +126,22 @@ def get_okex_now():
             "{}_btc".format(symbol[0:3]): ticker_infos.get("{}_btc".format(symbol[0:3])) or 1,
             "index": index
         }
+
+    print(rdata)
+
+    btn_data = {
+        "ticker": float(rdata[coin_index[up_data]]["ticker"]) /
+                  float(rdata[coin_index[down_data]]["ticker"]),
+        "index": float(rdata[coin_index[up_data]]["index"]) /
+                 float(rdata[coin_index[down_data]]["index"]),
+        "mid": float(rdata[coin_index[up_data]]["{}_btc".format(
+                coin_index[up_data][0:3])]) /
+               float(rdata[coin_index[down_data]]["{}_btc".format(
+                   coin_index[down_data][0:3])]),
+    }
+
+    rdata.update({
+        "btn": btn_data
+    })
 
     return json.dumps(rdata)

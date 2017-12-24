@@ -193,21 +193,22 @@
           <td class="K"></td>
         </tr>
         <tr class="additional-btc">
-          <th scope="row">
-            <div class="additional-btc-up">
-              <input type="checkbox"> 1
-              <input type="checkbox"> 2
-              <input type="checkbox"> 3
-              <input type="checkbox"> 4
-              <input type="checkbox"> 5
-            </div>
-            <div class="additional-btc-down">
-              <input type="checkbox"> 1
-              <input type="checkbox"> 2
-              <input type="checkbox"> 3
-              <input type="checkbox"> 4
-              <input type="checkbox"> 5
-            </div>
+          <th scope="row" class="upDown">
+            <select class="additional-btc-up">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+            </select>
+              /
+            <select class="additional-btc-down">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+            </select>
           </th>
           <td class="H"></td>
           <td class="J"></td>
@@ -216,6 +217,10 @@
       </tbody>
     </table>
     </div>
+
+    <video class="hidden" loop="loop" id="doAlert">
+      <source src="http://fjdx.sc.chinaz.com/files/download/sound1/201410/5051.mp3" type="audio/mp3" />
+    </video>
 
 
 
@@ -256,13 +261,13 @@ function getBasic() {
             symbol = data["symbol"];
             this_symbol = ".".concat(symbol.toUpperCase());
             $(".basic").find(this_symbol.concat(" .A")).text
-            (data["this_week"]);
+            (data["this_week"].toFixed(8));
             $(".basic").find(this_symbol.concat(" .B")).text
-            (data["next_week"]);
+            (data["next_week"].toFixed(8));
             $(".basic").find(this_symbol.concat(" .C")).text
-            (data["quarter"]);
+            (data["quarter"].toFixed(8));
             $(".basic").find(this_symbol.concat(" .D")).text
-            (data["future_index"]);
+            (data["future_index"].toFixed(8));
         })
     });
 
@@ -285,30 +290,38 @@ function getMain() {
             symbol = data["symbol"];
             this_symbol = ".".concat(symbol);
             $(".main").find(this_symbol.concat(" .X")).text
-            (data["X"]);
+            (data["X"].toFixed(8));
             $(".main").find(this_symbol.concat(" .Y")).text
-            (data["Y"]);
+            (data["Y"].toFixed(8));
             $(".main").find(this_symbol.concat(" .Z")).text
-            (data["Z"]);
+            (data["Z"].toFixed(8));
             $(".main").find(this_symbol.concat(" .M")).text
-            (data["M"]);
+            (data["M"].toFixed(8));
             $(".main").find(this_symbol.concat(" .N")).text
-            (data["N"]);
+            (data["N"].toFixed(8));
 
             msg = data["msg"];
+            do_alert = false;
             $.each(msg, function (k, v) {
                 this_btn = " .".concat(k.toUpperCase());
                 if(v===1){
                     $(".main").find(this_symbol.concat(this_btn))
-                        .addClass("alert-danger")
+                        .addClass("alert-danger");
+                        do_alert = true
                 } else {
                     $(".main").find(this_symbol.concat(this_btn))
                         .removeClass("alert-danger")
                 }
 
 
-            })
-        })
+            });
+        });
+        var audio = document.getElementById("doAlert");
+        if(do_alert){
+            audio.play();
+        }else {
+            audio.pause();
+        }
 
     })
 
@@ -316,9 +329,12 @@ function getMain() {
 
 function getAdditional() {
     {#获取额外数据#}
+    data = findAddtitional();
+
     $.get({
         url: "http://127.0.0.1:5000/additional",
-        dataType: "json"
+        dataType: "json",
+        data: data
     }).done(function (data) {
         rdata = data;
         $.each(rdata, function (k, data) {
@@ -331,7 +347,15 @@ function getAdditional() {
             (data[mid]);
             $(".additional").find(this_symbol.concat(" .K")).text
             (data["ticker"]);
-        })
+
+        });
+        btn = rdata["btn"];
+        $(".additional-btc").find(".H").text
+            (btn["index"].toFixed(8));
+        $(".additional-btc").find(".J").text
+            (btn["mid"].toFixed(8));
+        $(".additional-btc").find(".K").text
+            (btn["ticker"].toFixed(8));
     })
 }
 
@@ -370,6 +394,16 @@ function findMainUpData() {
 
 }
 
+{#查找附加数据#}
+function findAddtitional() {
+    up_data = $(".additional-btc .additional-btc-up").val();
+    down_data = $(".additional-btc .additional-btc-down").val();
+
+    return {
+        "up": up_data,
+        "down": down_data
+    }
+}
 
 
 </script>
