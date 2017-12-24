@@ -190,11 +190,11 @@ def add_okex_plus_to_scv(start, end):
     for op in okex_pluss:
         data.append([
             op.symbol,
-            op.X,
-            op.Y,
-            op.Z,
-            op.M,
-            op.N,
+            round(float(op.X), 8),
+            round(float(op.Y), 8),
+            round(float(op.Z), 8),
+            round(float(op.M), 8),
+            round(float(op.N), 8),
             op.create_time.strftime("%Y-%m-%d %H:%M:%S")
         ])
     filename = '合约'

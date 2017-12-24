@@ -17,7 +17,7 @@ from tasks_func import add_ticker, add_sdata_plus, get_sdata_list, get_ticker, \
 
 
 def task_20s():
-    """ 10秒运行一次
+    """ 20秒运行一次
     """
     start = time.time()
     print("############# 开始30s任务 #############")
@@ -58,7 +58,8 @@ def task_1d():
 
 if __name__ == '__main__':
     sched = BlockingScheduler()
-    sched.add_job(task_20s, 'interval', seconds=20)    # 没十五秒运行一次
-    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   # 每天0点运行
+    sched.add_job(task_20s, 'interval', seconds=20)    # 每20秒运行一次
+    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   #
+    # 每天0点运行
     sched.start()
 

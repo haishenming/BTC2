@@ -75,19 +75,19 @@ def get_okex_plus():
         check_m = m_num["min"] != m_num["max"]
         check_n = n_num["min"] != n_num["max"]
         msg = {
-            "X": 1 if not(float(x_num["min"]) < X < float(x_num["max"]))
+            "X": 1 if not(float(x_num["max"]) < X < float(x_num["min"]))
                       and check_x else 0,
 
-            "Y": 1 if not(float(y_num["min"]) < Y < float(y_num["max"]))
+            "Y": 1 if not(float(y_num["max"]) < Y < float(y_num["min"]))
                       and check_y else 0,
 
-            "Z": 1 if not(float(z_num["min"]) < Z < float(z_num["max"]))
+            "Z": 1 if not(float(z_num["max"]) < Z < float(z_num["min"]))
                       and check_z else 0,
 
-            "M": 1 if not(float(m_num["min"]) < M < float(m_num["max"]))
+            "M": 1 if not(float(m_num["max"]) < M < float(m_num["min"]))
                       and check_m else 0,
 
-            "N": 1 if not(float(n_num["min"]) < N < float(n_num["max"]))
+            "N": 1 if not(float(n_num["max"]) < N < float(n_num["min"]))
                       and check_n else 0,
         }
 
