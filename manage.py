@@ -3,11 +3,14 @@ import os
 
 from app import create_app, db
 from app.models import Okex
-from flask_script import Manager, Shell
+from flask_script import Manager, Shell, Server
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
+server = Server(host="0.0.0.0", port=9000)
+manager.add_command("runserver", server)
+
 
 
 # shell启动配置
