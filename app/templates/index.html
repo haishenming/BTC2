@@ -311,6 +311,7 @@ function getMain() {
         data: upData
     }).done(function (data) {
         rdata = data;
+        do_alert = false;
         $.each(rdata, function (i, data) {
             symbol = data["symbol"];
             this_symbol = ".".concat(symbol);
@@ -326,7 +327,6 @@ function getMain() {
             (data["N"].toFixed(8));
 
             msg = data["msg"];
-            do_alert = false;
             $.each(msg, function (k, v) {
                 this_btn = " .".concat(k.toUpperCase());
                 this_tag = $(".main").find(this_symbol.concat(this_btn));
@@ -335,7 +335,7 @@ function getMain() {
                 if(typeof ischeck === "undefined"){
                     if(v===1){
                     this_tag.addClass("alert-danger");
-                        do_alert = true
+                    do_alert = true
                 } else {
                     this_tag.removeClass("alert-danger")
                 }
