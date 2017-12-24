@@ -1,0 +1,410 @@
+{% extends 'base.html' %}
+
+{% block title %}flask{% endblock %}
+
+{% block page_content %}
+
+{#    basic 基本数据表#}
+{#    main 报警表#}
+{#    aditional 附加表#}
+
+    <div class="container">
+        <h1>行情表</h1>
+        <dr/>
+        <table class="table table-bordered basic">
+      <thead>
+        <tr>
+          <th>品种/价格</th>
+          <th class="A">A.当周最新成交价</th>
+          <th class="B">B.次周最新成交价</th>
+          <th class="C">C.季度最新成交价</th>
+          <th class="D">D.最新价格指数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="BTC">
+          <th scope="row">1.BTC</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="LTC">
+          <th scope="row">2.LTC</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="ETH">
+          <th scope="row">3.ETH</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="ETC">
+          <th scope="row">4.ETC</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+        <tr class="BCH">
+          <th scope="row">5.BCH</th>
+          <td class="A"></td>
+          <td class="B"></td>
+          <td class="C"></td>
+          <td class="D"></td>
+        </tr>
+      </tbody>
+    </table>
+
+        <h1>报警表</h1>
+        <dr/>
+        <table class="table table-bordered main">
+      <thead>
+        <tr>
+          <th>品种/数值</th>
+          <th class="X">X.当周毛利</th>
+          <th class="Y">Y.次周毛利</th>
+          <th class="Z">Z.季度毛利</th>
+          <th class="M">M.次周为当周倍数</th>
+          <th class="N">N.季度为次周倍数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="btc_usd">
+          <th scope="row">1.BTC</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="ltc_usd">
+          <th scope="row">2.LTC</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="eth_usd">
+          <th scope="row">3.ETH</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="etc_usd">
+          <th scope="row">4.ETC</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="bch_usd">
+          <th scope="row">5.BCH</th>
+          <td class="X"></td>
+          <td class="Y"></td>
+          <td class="Z"></td>
+          <td class="M"></td>
+          <td class="N"></td>
+        </tr>
+        <tr class="main-btc">
+          <th scope="row">报警数值设置</th>
+          <td class="X">
+              <div class="main-input">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
+              </div>
+          </td>
+          <td class="Y">
+              <div class="main-input">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
+              </div>
+          </td>
+          <td class="Z">
+              <div class="main-input">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
+              </div>
+          </td>
+          <td class="M">
+              <div class="main-input">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
+              </div>
+          </td>
+          <td class="N">
+              <div class="main-input">
+                  <input type="text" class="form-control min" placeholder="大于">
+                  <input type="text" class="form-control max" placeholder="小于">
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+        <h1>附加表</h1>
+        <dr/>
+        <table class="table table-bordered additional">
+      <thead>
+        <tr>
+          <th>品种/数值</th>
+          <th class="H">H.指数价格</th>
+          <th class="J">J.BTC倍数</th>
+          <th class="K">K.最新价格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="btc_usd">
+          <th scope="row">1.BTC</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="ltc_usd">
+          <th scope="row">2.LTC</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="eth_usd">
+          <th scope="row">3.ETH</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="etc_usd">
+          <th scope="row">4.ETC</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="bch_usd">
+          <th scope="row">5.BCH</th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+        <tr class="additional-btc">
+          <th scope="row" class="upDown">
+            <select class="additional-btc-up">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+            </select>
+              /
+            <select class="additional-btc-down">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+            </select>
+          </th>
+          <td class="H"></td>
+          <td class="J"></td>
+          <td class="K"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <video class="hidden" loop="loop" id="doAlert">
+      <source src="http://fjdx.sc.chinaz.com/files/download/sound1/201410/5051.mp3" type="audio/mp3" />
+    </video>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+<script>
+
+var task;
+
+task = setInterval(start, 5000);
+
+var basicUrl = "http://127.0.0.1:5000/basic";
+var mainUrl = "http://127.0.0.1:5000/main";
+var additionalUrl = "http://127.0.0.1:5000/additional";
+
+function start() {
+    {#获取基本数据#}
+    getBasic();
+    {#获取报警数据#}
+    getMain();
+    {#获取额外数据#}
+    getAdditional();
+}
+
+
+function getBasic() {
+    {#获取基本数据#}
+    $.get({
+        url: "http://127.0.0.1:5000/basic",
+        dataType: "json"
+    }).done(function (data) {
+        rdata = data;
+        $.each(rdata, function (i, data) {
+            {#console.log($(".basic").find(this_symbol.concat(" .A")));#}
+            symbol = data["symbol"];
+            this_symbol = ".".concat(symbol.toUpperCase());
+            $(".basic").find(this_symbol.concat(" .A")).text
+            (data["this_week"].toFixed(8));
+            $(".basic").find(this_symbol.concat(" .B")).text
+            (data["next_week"].toFixed(8));
+            $(".basic").find(this_symbol.concat(" .C")).text
+            (data["quarter"].toFixed(8));
+            $(".basic").find(this_symbol.concat(" .D")).text
+            (data["future_index"].toFixed(8));
+        })
+    });
+
+
+
+}
+
+function getMain() {
+    {#获取主要数据#}
+    upData = findMainUpData();
+
+    $.get({
+        url: "http://127.0.0.1:5000/main",
+        dataType: "json",
+        data: upData
+    }).done(function (data) {
+        rdata = data;
+
+        $.each(rdata, function (i, data) {
+            symbol = data["symbol"];
+            this_symbol = ".".concat(symbol);
+            $(".main").find(this_symbol.concat(" .X")).text
+            (data["X"].toFixed(8));
+            $(".main").find(this_symbol.concat(" .Y")).text
+            (data["Y"].toFixed(8));
+            $(".main").find(this_symbol.concat(" .Z")).text
+            (data["Z"].toFixed(8));
+            $(".main").find(this_symbol.concat(" .M")).text
+            (data["M"].toFixed(8));
+            $(".main").find(this_symbol.concat(" .N")).text
+            (data["N"].toFixed(8));
+
+            msg = data["msg"];
+            do_alert = false;
+            $.each(msg, function (k, v) {
+                this_btn = " .".concat(k.toUpperCase());
+                if(v===1){
+                    $(".main").find(this_symbol.concat(this_btn))
+                        .addClass("alert-danger");
+                        do_alert = true
+                } else {
+                    $(".main").find(this_symbol.concat(this_btn))
+                        .removeClass("alert-danger")
+                }
+
+
+            });
+        });
+        var audio = document.getElementById("doAlert");
+        if(do_alert){
+            audio.play();
+        }else {
+            audio.pause();
+        }
+
+    })
+
+}
+
+function getAdditional() {
+    {#获取额外数据#}
+    data = findAddtitional();
+
+    $.get({
+        url: "http://127.0.0.1:5000/additional",
+        dataType: "json",
+        data: data
+    }).done(function (data) {
+        rdata = data;
+        $.each(rdata, function (k, data) {
+            symbol = k;
+            mid = symbol.slice(0, 3).concat("_btc");
+            this_symbol = ".".concat(symbol);
+            $(".additional").find(this_symbol.concat(" .H")).text
+            (data["index"]);
+            $(".additional").find(this_symbol.concat(" .J")).text
+            (data[mid]);
+            $(".additional").find(this_symbol.concat(" .K")).text
+            (data["ticker"]);
+
+        });
+        btn = rdata["btn"];
+        $(".additional-btc").find(".H").text
+            (btn["index"].toFixed(8));
+        $(".additional-btc").find(".J").text
+            (btn["mid"].toFixed(8));
+        $(".additional-btc").find(".K").text
+            (btn["ticker"].toFixed(8));
+    })
+}
+
+
+{#查找上传的main数据#}
+function findMainUpData() {
+    X = $(".main-btc").children(".X");
+    Y = $(".main-btc").children(".Y");
+    Z = $(".main-btc").children(".Z");
+    M = $(".main-btc").children(".M");
+    N = $(".main-btc").children(".N");
+    x_max = X.find(".max").val()? X.find(".max").val(): "0";
+    x_min = X.find(".min").val()? X.find(".min").val(): "0";
+
+    y_max = Y.find(".max").val()? Y.find(".max").val(): "0";
+    y_min = Y.find(".min").val()? Y.find(".min").val(): "0";
+
+    z_max = Z.find(".max").val()? Z.find(".max").val(): "0";
+    z_min = Z.find(".min").val()? Z.find(".min").val(): "0";
+
+    m_max = M.find(".max").val()? M.find(".max").val(): "0";
+    m_min = M.find(".min").val()? M.find(".min").val(): "0";
+
+    n_max = N.find(".max").val()? N.find(".max").val(): "0";
+    n_min = N.find(".min").val()? N.find(".min").val(): "0";
+
+    return {
+        "x": {"max": x_max, "min": x_min},
+        "y": {"max": y_max, "min": y_min},
+        "z": {"max": z_max, "min": z_min},
+        "m": {"max": m_max, "min": m_min},
+        "n": {"max": n_max, "min": n_min}
+    }
+
+
+
+}
+
+{#查找附加数据#}
+function findAddtitional() {
+    up_data = $(".additional-btc .additional-btc-up").val();
+    down_data = $(".additional-btc .additional-btc-down").val();
+
+    return {
+        "up": up_data,
+        "down": down_data
+    }
+}
+
+
+</script>
+{% endblock %}
