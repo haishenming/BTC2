@@ -37,6 +37,9 @@ SDATA_NOW = (
     'hsr_usdt', 'neo_usdt', 'gas_usdt'
 )
 
+# 请求超时时间
+TIMEOUT = 5
+
 
 def get_ticker(symbol, contract_type):
     """ 获取ticker
@@ -46,7 +49,7 @@ def get_ticker(symbol, contract_type):
         "contract_type": contract_type
     }
 
-    response = requests.get(FUTURE_TICKER_URL, params=data)
+    response = requests.get(FUTURE_TICKER_URL, params=data, timeout=TIMEOUT)
 
     rdata = response.json()
 
@@ -59,7 +62,7 @@ def get_index(symbol):
         "symbol": symbol,
     }
 
-    response = requests.get(FUTURE_INDEX_URL, params=data)
+    response = requests.get(FUTURE_INDEX_URL, params=data, timeout=TIMEOUT)
 
     rdata = response.json()
 
@@ -72,7 +75,7 @@ def get_ticker_now(symbol):
         "symbol": symbol,
     }
 
-    response = requests.get(TICKER_NOW_URL, params=data)
+    response = requests.get(TICKER_NOW_URL, params=data, timeout=TIMEOUT)
 
     rdata = response.json()
 
