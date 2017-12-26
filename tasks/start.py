@@ -20,7 +20,7 @@ def task_20s():
     """ 20秒运行一次
     """
     start = time.time()
-    print("############# 开始30s任务 #############")
+    print("############# 开始20s任务 #############")
 
     print("获取数据 ##########")
     sdata_list = get_sdata_list()
@@ -38,7 +38,7 @@ def task_20s():
     add_sdata_plus(parse_data)
     add_ticker_now()
 
-    print("############# 15s任务完成 耗时 {} 秒 #############".
+    print("############# 20s任务完成 耗时 {} 秒 #############".
           format(time.time() - start))
 
 
