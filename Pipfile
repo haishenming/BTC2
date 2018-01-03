@@ -40,4 +40,4 @@ wcwidth = "==0.1.7"
 werkzeug = "==0.12.2"
 win-unicode-console = "==0.5"
 wtforms = "==2.1"
-celery = {extras = ["redis"]}
+celery = "==4.0.2"

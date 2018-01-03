@@ -13,7 +13,7 @@ CELERYBEAT_SCHEDULE = {
     },
     'add-every-day': {
          'task': 'tasks.celery_1d',
-         'schedule': crontab(hour=15, minute=1),
+         'schedule': crontab(hour=0, minute=0),
          'args': ()
     },
 }
