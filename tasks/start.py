@@ -59,7 +59,7 @@ def task_1d():
 if __name__ == '__main__':
     sched = BlockingScheduler()
     sched.add_job(task_20s, 'interval', seconds=20)    # 每20秒运行一次
-    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   #
+    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)
     # 每天0点运行
     sched.start()
 

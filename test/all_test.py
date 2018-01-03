@@ -19,7 +19,7 @@ print("end1:", end1)
 
 
 start2 = time.time()
-for k, v in test_dic.iteritems():
+for k, v in test_dic.items():
     pass
 end2 = time.time() - start2
 print("end2", end2)
