@@ -37,6 +37,9 @@ SDATA_NOW = (
     'hsr_usdt', 'neo_usdt', 'gas_usdt'
 )
 
+# 请求超时时间
+TIMEOUT = 5
+
 
 def get_ticker(symbol, contract_type):
     """ 获取ticker
@@ -46,7 +49,7 @@ def get_ticker(symbol, contract_type):
         "contract_type": contract_type
     }
 
-    response = requests.get(FUTURE_TICKER_URL, params=data)
+    response = requests.get(FUTURE_TICKER_URL, params=data, timeout=TIMEOUT)
 
     rdata = response.json()
 
@@ -59,7 +62,7 @@ def get_index(symbol):
         "symbol": symbol,
     }
 
-    response = requests.get(FUTURE_INDEX_URL, params=data)
+    response = requests.get(FUTURE_INDEX_URL, params=data, timeout=TIMEOUT)
 
     rdata = response.json()
 
@@ -72,7 +75,7 @@ def get_ticker_now(symbol):
         "symbol": symbol,
     }
 
-    response = requests.get(TICKER_NOW_URL, params=data)
+    response = requests.get(TICKER_NOW_URL, params=data, timeout=TIMEOUT)
 
     rdata = response.json()
 
@@ -190,11 +193,11 @@ def add_okex_plus_to_scv(start, end):
     for op in okex_pluss:
         data.append([
             op.symbol,
-            op.X,
-            op.Y,
-            op.Z,
-            op.M,
-            op.N,
+            round(float(op.X), 8),
+            round(float(op.Y), 8),
+            round(float(op.Z), 8),
+            round(float(op.M), 8),
+            round(float(op.N), 8),
             op.create_time.strftime("%Y-%m-%d %H:%M:%S")
         ])
     filename = '合约'

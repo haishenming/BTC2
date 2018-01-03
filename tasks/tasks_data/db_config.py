@@ -9,7 +9,7 @@ from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-DB_URL = "sqlite:///./data.db"
+DB_URL = "sqlite:///../data.db"
 DB_ECHO = True
 
 # 初始化数据库连接:

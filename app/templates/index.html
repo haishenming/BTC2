@@ -76,43 +76,69 @@
       <tbody>
         <tr class="btc_usd">
           <th scope="row">1.BTC</th>
-          <td class="X"></td>
-          <td class="Y"></td>
-          <td class="Z"></td>
-          <td class="M"></td>
-          <td class="N"></td>
+          <td class="X"><input type="checkbox" name="alert"
+                               class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Y"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Z"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="M"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="N"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
         </tr>
         <tr class="ltc_usd">
           <th scope="row">2.LTC</th>
-          <td class="X"></td>
-          <td class="Y"></td>
-          <td class="Z"></td>
-          <td class="M"></td>
-          <td class="N"></td>
+          <td class="X"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Y"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Z"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="M"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="N"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
         </tr>
         <tr class="eth_usd">
           <th scope="row">3.ETH</th>
-          <td class="X"></td>
-          <td class="Y"></td>
-          <td class="Z"></td>
-          <td class="M"></td>
-          <td class="N"></td>
+          <td class="X"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Y"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Z"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="M"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="N"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
         </tr>
         <tr class="etc_usd">
           <th scope="row">4.ETC</th>
-          <td class="X"></td>
-          <td class="Y"></td>
-          <td class="Z"></td>
-          <td class="M"></td>
-          <td class="N"></td>
+          <td class="X"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Y"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Z"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="M"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="N"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
         </tr>
         <tr class="bch_usd">
           <th scope="row">5.BCH</th>
-          <td class="X"></td>
-          <td class="Y"></td>
-          <td class="Z"></td>
-          <td class="M"></td>
-          <td class="N"></td>
+          <td class="X"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Y"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="Z"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="M"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
+          <td class="N"><input type="checkbox" name="alert" class="isCheck"><p
+                  class="alert"></p></td>
         </tr>
         <tr class="main-btc">
           <th scope="row">报警数值设置</th>
@@ -285,35 +311,35 @@ function getMain() {
         data: upData
     }).done(function (data) {
         rdata = data;
-
+        do_alert = false;
         $.each(rdata, function (i, data) {
             symbol = data["symbol"];
             this_symbol = ".".concat(symbol);
-            $(".main").find(this_symbol.concat(" .X")).text
+            $(".main").find(this_symbol.concat(" .X .alert")).text
             (data["X"].toFixed(8));
-            $(".main").find(this_symbol.concat(" .Y")).text
+            $(".main").find(this_symbol.concat(" .Y .alert")).text
             (data["Y"].toFixed(8));
-            $(".main").find(this_symbol.concat(" .Z")).text
+            $(".main").find(this_symbol.concat(" .Z .alert")).text
             (data["Z"].toFixed(8));
-            $(".main").find(this_symbol.concat(" .M")).text
+            $(".main").find(this_symbol.concat(" .M .alert")).text
             (data["M"].toFixed(8));
-            $(".main").find(this_symbol.concat(" .N")).text
+            $(".main").find(this_symbol.concat(" .N .alert")).text
             (data["N"].toFixed(8));
 
             msg = data["msg"];
-            do_alert = false;
             $.each(msg, function (k, v) {
                 this_btn = " .".concat(k.toUpperCase());
-                if(v===1){
-                    $(".main").find(this_symbol.concat(this_btn))
-                        .addClass("alert-danger");
-                        do_alert = true
+                this_tag = $(".main").find(this_symbol.concat(this_btn));
+                ischeck = this_tag.find(".isCheck:checked").val();
+                console.log(ischeck);
+                if(typeof ischeck === "undefined"){
+                    if(v===1){
+                    this_tag.addClass("alert-danger");
+                    do_alert = true
                 } else {
-                    $(".main").find(this_symbol.concat(this_btn))
-                        .removeClass("alert-danger")
+                    this_tag.removeClass("alert-danger")
                 }
-
-
+                }
             });
         });
         var audio = document.getElementById("doAlert");

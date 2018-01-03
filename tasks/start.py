@@ -6,6 +6,7 @@ Created on 2017年12月06日 下午2:23
 定时任务核心代码
 
 '''
+
 import time
 
 from datetime import datetime, timedelta
@@ -15,11 +16,11 @@ from tasks_func import add_ticker, add_sdata_plus, get_sdata_list, get_ticker, \
     get_index, add_okex_plus_to_scv, add_ticker_now
 
 
-def task_15s():
-    """ 10秒运行一次
+def task_20s():
+    """ 20秒运行一次
     """
     start = time.time()
-    print("############# 开始30s任务 #############")
+    print("############# 开始20s任务 #############")
 
     print("获取数据 ##########")
     sdata_list = get_sdata_list()
@@ -37,7 +38,7 @@ def task_15s():
     add_sdata_plus(parse_data)
     add_ticker_now()
 
-    print("############# 15s任务完成 耗时 {} 秒 #############".
+    print("############# 20s任务完成 耗时 {} 秒 #############".
           format(time.time() - start))
 
 
@@ -57,7 +58,8 @@ def task_1d():
 
 if __name__ == '__main__':
     sched = BlockingScheduler()
-    sched.add_job(task_15s, 'interval', seconds=15)    # 每分钟的第30秒运行
-    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)   # 每天0点运行
+    sched.add_job(task_20s, 'interval', seconds=20)    # 每20秒运行一次
+    sched.add_job(task_1d, 'cron', hour=0, minute=0, second=0)
+    # 每天0点运行
     sched.start()
 
